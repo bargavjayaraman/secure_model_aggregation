@@ -1,0 +1,6 @@
+party 2, Elapsed Time: 0.425121 seconds
+
+Number of Gates: 1295600
+party 1, Elapsed Time: 0.584241 seconds
+
+Number of Gates: 1295600

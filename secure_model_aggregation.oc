@@ -1,0 +1,19 @@
+#include <obliv.oh>
+#include "secure_model_aggregation.h"
+
+void aggregate(void* args)
+{
+  protocolIO *io = args;
+  obliv long long beta_avg[D];
+
+  for(int j = 0; j < D; j++)
+  {
+    beta_avg[j] = 0;
+    for(int i = 0; i < M; i++)
+      beta_avg[j] = beta_avg[j] + (feedOblivLLong(io->beta1[i][j], 1) ^ feedOblivLLong(io->beta2[i][j], 2));
+    beta_avg[j] = beta_avg[j] / M;
+  }
+
+  for(int j = 0; j < D; j++)
+    revealOblivLLong(&io->beta_avg[j], beta_avg[j], 0);
+}
